@@ -1,0 +1,44 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest || exit 0']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build', 
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest', 
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:ubuntu-20.04', 
+    '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest',
+    'minimal-notebook'
+  ]
+
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest || exit 0']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build', 
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest', 
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:ubuntu-20.04', 
+    '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest',
+    'scipy-notebook'
+  ]
+
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest || exit 0']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build', 
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest',
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:ubuntu-20.04',
+    '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest',
+    'microscopy-notebook'
+  ]
+
+images:
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:ubuntu-20.04'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:ubuntu-20.04'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:ubuntu-20.04'
