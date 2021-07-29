@@ -8,7 +8,7 @@ steps:
   args: [
     'build',
     '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest',
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:ubuntu-20.04',
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:$SHORT_SHA',
     '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest',
     'minimal-notebook'
   ]
@@ -20,7 +20,7 @@ steps:
   args: [
     'build',
     '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest',
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:ubuntu-20.04',
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:$SHORT_SHA',
     '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest',
     'scipy-notebook'
   ]
@@ -32,7 +32,7 @@ steps:
   args: [
     'build',
     '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest',
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:ubuntu-20.04',
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:$SHORT_SHA',
     '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest',
     'microscopy-notebook'
   ]
@@ -41,8 +41,8 @@ images:
 - 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest'
 - 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest'
 - 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest'
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:ubuntu-20.04'
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:ubuntu-20.04'
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:ubuntu-20.04'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:$SHORT_SHA'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:$SHORT_SHA'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:$SHORT_SHA'
 
 timeout: 1800s
