@@ -14,7 +14,7 @@ RUN apt-get update --yes && \
 
 USER ${NB_UID}
 
-# Install Python4 packages
+# Install Python3 packages
 RUN conda install --quiet --yes \
     'conda-forge::blas=*=openblas' \
     'cython=0.29.*' \
@@ -30,8 +30,10 @@ RUN conda install --quiet --yes \
     'scikit-learn=0.24.*' \
     'scipy=1.7.*' \
     'seaborn=0.11.*' \
-    'widgetsnbextension=3.5.*'\
+    'widgetsnbextension=3.5.*' \
     'hyperspy=1.6.*' \
+    'gsutil' \
+    'google-cloud-storage' \
     'xlrd=2.0.*' && \
     conda clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
