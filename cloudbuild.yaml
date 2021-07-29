@@ -4,9 +4,9 @@ steps:
   args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest || exit 0']
 - name: 'gcr.io/cloud-builders/docker'
   args: [
-    'build', 
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest', 
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:ubuntu-20.04', 
+    'build',
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest',
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:ubuntu-20.04',
     '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest',
     'minimal-notebook'
   ]
@@ -16,9 +16,9 @@ steps:
   args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest || exit 0']
 - name: 'gcr.io/cloud-builders/docker'
   args: [
-    'build', 
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest', 
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:ubuntu-20.04', 
+    'build',
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest',
+    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:ubuntu-20.04',
     '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest',
     'scipy-notebook'
   ]
@@ -28,7 +28,7 @@ steps:
   args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest || exit 0']
 - name: 'gcr.io/cloud-builders/docker'
   args: [
-    'build', 
+    'build',
     '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest',
     '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:ubuntu-20.04',
     '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest',
@@ -42,3 +42,5 @@ images:
 - 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:ubuntu-20.04'
 - 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:ubuntu-20.04'
 - 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:ubuntu-20.04'
+
+timeout: 1800s
