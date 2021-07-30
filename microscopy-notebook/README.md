@@ -31,6 +31,7 @@
 - [List](https://cloud.google.com/storage/docs/gsutil/commands/ls)
     ```bash
     gsutil ls gs://<BUCKET_NAME>
+    ```
 - [Copy](https://cloud.google.com/storage/docs/gsutil/commands/cp)
     ```bash
     gsutil cp gs://<BUCKET_NAME>/<OBJECT_NAME> . # download object from cloud storage to local directory
@@ -41,4 +42,3 @@
     gsutil help
     ```
 - Documentation: https://cloud.google.com/storage/docs/gsutil
-    
