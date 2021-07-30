@@ -13,6 +13,6 @@ RUN conda install --quiet --yes \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
-COPY README.md "/home/${NB_USER}"
+COPY README.md /tmp
 
 WORKDIR "${HOME}"

@@ -47,6 +47,6 @@ RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
 
 USER ${NB_UID}
 
-COPY README.md "/home/${NB_USER}"
+COPY README.md /tmp
 
 WORKDIR "${HOME}"
