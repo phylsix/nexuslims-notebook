@@ -1,7 +1,7 @@
 # https://cloud.google.com/build/docs/build-config-file-schema
 
 steps:
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/docker/minimal-notebook'
   entrypoint: 'bash'
   args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest || exit 0']
 - name: 'gcr.io/cloud-builders/docker'
@@ -13,7 +13,7 @@ steps:
     'minimal-notebook'
   ]
 
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/docker/scipy-notebook'
   entrypoint: 'bash'
   args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest || exit 0']
 - name: 'gcr.io/cloud-builders/docker'
@@ -25,7 +25,7 @@ steps:
     'scipy-notebook'
   ]
 
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/docker/microscopy-notebook'
   entrypoint: 'bash'
   args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest || exit 0']
 - name: 'gcr.io/cloud-builders/docker'
