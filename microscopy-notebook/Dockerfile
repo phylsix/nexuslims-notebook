@@ -3,9 +3,11 @@
 ARG BASE_CONTAINER=jupyter/minimal-notebook
 FROM $BASE_CONTAINER
 
-LABEL maintainer="Weinan Si <w.si@euclidtechlabs.com>"
 
 USER root
+
+# install Cloud SDK
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk -y
 
 # ffmpeg for matplotlib anim & dvipng+cm-super for latex labels
 RUN apt-get update --yes && \
@@ -32,8 +34,6 @@ RUN conda install --quiet --yes \
     'seaborn=0.11.*' \
     'widgetsnbextension=3.5.*' \
     'hyperspy=1.6.*' \
-    'gsutil' \
-    'google-cloud-storage' \
     'xlrd=2.0.*' && \
     conda clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \

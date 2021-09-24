@@ -1,17 +1,10 @@
 ARG BASE_CONTAINER=jupyter/scipy-notebook
 FROM $BASE_CONTAINER:latest
 
-LABEL maintainer="Weinan Si <w.si@euclidtechlabs.com>"
-
 USER ${NB_UID}
 
-# Install Python3 packages
-RUN conda install --quiet --yes \
-    'gsutil' \
-    'google-cloud-storage' && \
-    conda clean --all -f -y && \
-    fix-permissions "${CONDA_DIR}" && \
-    fix-permissions "/home/${NB_USER}"
+# install Cloud SDK
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk -y
 
 COPY README.md /tmp
 
