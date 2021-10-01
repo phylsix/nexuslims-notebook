@@ -2,22 +2,28 @@
 
 steps:
   # pull last image as cache to build from
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest || exit 0']
-- name: 'gcr.io/cloud-builders/docker'
-  args: [
-    'build',
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest',
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:$SHORT_SHA',
-    '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest',
-    'microscopy-notebook'
-  ]
-  env:
-  - 'GCP_PROJECT_ID=nexuslims-computing' # set project-id for cloud-sdk
+  - name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      [
+        "-c",
+        "docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest || exit 0",
+      ]
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest",
+        "-t",
+        "us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:$SHORT_SHA",
+        "--cache-from",
+        "us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest",
+        "microscopy-notebook",
+      ]
 
 images:
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest'
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:$SHORT_SHA'
+  - "us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest"
+  - "us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:$SHORT_SHA"
 
 timeout: 1800s
