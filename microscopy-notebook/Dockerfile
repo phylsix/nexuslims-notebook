@@ -62,5 +62,5 @@ WORKDIR "${HOME}"
 
 # set project ID
 ARG GCP_PROJECT_ID
-RUN gcloud config set project ${GCP_PROJECT_ID} && \
+RUN gcloud config set project "${GCP_PROJECT_ID}" && \
     gcloud config set pass_credentials_to_gsutil true
