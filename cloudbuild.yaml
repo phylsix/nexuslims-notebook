@@ -1,30 +1,7 @@
 # https://cloud.google.com/build/docs/build-config-file-schema
 
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest || exit 0']
-- name: 'gcr.io/cloud-builders/docker'
-  args: [
-    'build',
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest',
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:$SHORT_SHA',
-    '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest',
-    'minimal-notebook'
-  ]
-
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest || exit 0']
-- name: 'gcr.io/cloud-builders/docker'
-  args: [
-    'build',
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest',
-    '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:$SHORT_SHA',
-    '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest',
-    'scipy-notebook'
-  ]
-
+  # pull last image as cache to build from
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
   args: ['-c', 'docker pull us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest || exit 0']
@@ -36,13 +13,11 @@ steps:
     '--cache-from', 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest',
     'microscopy-notebook'
   ]
+  env:
+  - 'GCP_PROJECT_ID=nexuslims-computing' # set project-id for cloud-sdk
 
 images:
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:latest'
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:latest'
 - 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:latest'
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/minimal-notebook:$SHORT_SHA'
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/scipy-notebook:$SHORT_SHA'
 - 'us-central1-docker.pkg.dev/$PROJECT_ID/nexuslims-notebook/microscopy-notebook:$SHORT_SHA'
 
 timeout: 1800s
