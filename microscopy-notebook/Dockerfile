@@ -60,4 +60,5 @@ COPY README.md /tmp
 
 WORKDIR "${HOME}"
 
-RUN gcloud config set pass_credentials_to_gsutil true
+RUN gcloud config set pass_credentials_to_gsutil true && \
+    export GOOGLE_APPLICATION_CREDENTIALS="/home/${NB_USER}/.config/gcloud/application_default_credentials.json"`
