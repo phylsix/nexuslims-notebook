@@ -122,8 +122,6 @@ Next, we prepare three files:
     ```python
     import matplotlib.pyplot as plt
     import hyperspy.api_nogui as hs
-
-
     signal = hs.load(snakemake.input[0])
     signal.plot()
     fig = plt.gcf()
@@ -136,8 +134,6 @@ Next, we prepare three files:
     ```python
     from snakemake.remote.GS import RemoteProvider as GSRemoteProvider
     GS = GSRemoteProvider()
-
-
     rule step1:
         conda:
             "environment.yaml"
